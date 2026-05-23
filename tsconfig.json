@@ -1,5 +1,13 @@
 {
+  "$schema": "https://raw.githubusercontent.com/Effect-TS/language-service/refs/heads/main/schema.json",
   // https://nuxt.com/docs/guide/concepts/typescript
+  "compilerOptions": {
+    "plugins": [
+      {
+        "name": "@effect/language-service"
+      }
+    ]
+  },
   "files": [],
   "references": [
     {
