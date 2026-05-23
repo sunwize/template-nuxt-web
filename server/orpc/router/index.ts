@@ -13,3 +13,5 @@ export const router = {
   ping,
   hello,
 };
+
+export type Router = typeof router;
