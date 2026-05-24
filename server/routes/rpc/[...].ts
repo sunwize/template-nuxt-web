@@ -15,7 +15,7 @@ export default defineEventHandler(async (event) => {
 
   const { response } = await rpcHandler.handle(request, {
     prefix: "/rpc",
-    context: {},
+    context: { event },
   });
 
   if (response) {

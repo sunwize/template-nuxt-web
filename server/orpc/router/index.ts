@@ -1,13 +1,22 @@
-import { os } from "@orpc/server";
+import { Effect } from "effect";
 import * as z from "zod";
 
-export const ping = os.handler(async () => "pong");
+import { publicProcedure } from "../procedures/public";
+import { runOrpcEffect } from "../runOrpcEffect";
 
-export const hello = os
+export const ping = publicProcedure.handler(
+  runOrpcEffect(() => Effect.succeed("pong"), { span: "ping" })
+);
+
+export const hello = publicProcedure
   .input(z.object({ name: z.string().optional() }))
-  .handler(async ({ input }) => ({
-    message: `Hello, ${input.name ?? "World"}!`,
-  }));
+  .handler(
+    runOrpcEffect(
+      ({ input }) =>
+        Effect.succeed({ message: `Hello, ${input.name ?? "World"}!` }),
+      { span: "hello" }
+    )
+  );
 
 export const router = {
   ping,
