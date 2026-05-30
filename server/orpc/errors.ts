@@ -6,5 +6,5 @@ export const toOrpcError = (error: unknown): ORPCError<string, unknown> => {
   }
 
   // Extend here with domain TaggedError → ORPCError mappings as they are added.
-  return new ORPCError("INTERNAL_SERVER_ERROR");
+  return new ORPCError("INTERNAL_SERVER_ERROR", { cause: error });
 };
