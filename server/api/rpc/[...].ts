@@ -1,14 +1,7 @@
-import { onError } from "@orpc/server";
 import { RPCHandler } from "@orpc/server/fetch";
 import { router } from "../../orpc/router";
 
-const rpcHandler = new RPCHandler(router, {
-  interceptors: [
-    onError((error) => {
-      console.error(error);
-    }),
-  ],
-});
+const rpcHandler = new RPCHandler(router);
 
 export default defineEventHandler(async (event) => {
   const request = toWebRequest(event);

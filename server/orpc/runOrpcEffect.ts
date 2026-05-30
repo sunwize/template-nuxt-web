@@ -37,8 +37,13 @@ export const runOrpcEffect = <
     const exit = await appRuntime.runPromiseExit(
       fn(opts).pipe(
         Effect.provide(OrpcContextLive(opts.context)),
+        Effect.tapErrorCause((cause) =>
+          Effect.logError("orpc procedure failed", {
+            error: Cause.squash(cause),
+          }),
+        ),
+        Effect.annotateLogs("orpc.path", span),
         Effect.withLogSpan(span),
-        Effect.annotateLogs("span", span),
       ),
     );
 
@@ -46,12 +51,6 @@ export const runOrpcEffect = <
       return exit.value;
     }
 
-    const error = Cause.squash(exit.cause);
-
-    await appRuntime.runPromise(
-      Effect.logError("orpc procedure failed", { span, error }),
-    );
-
-    throw toOrpcError(error);
+    throw toOrpcError(Cause.squash(exit.cause));
   };
 };
