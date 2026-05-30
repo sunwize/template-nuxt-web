@@ -32,4 +32,7 @@ export default defineNuxtConfig({
   vite: {
     plugins: [tailwindcss()],
   },
+  experimental: {
+    typedPages: true,
+  },
 });

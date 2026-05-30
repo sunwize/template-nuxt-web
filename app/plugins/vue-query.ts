@@ -17,7 +17,7 @@ export default defineNuxtPlugin({
     const queryClient = new QueryClient({
       defaultOptions: {
         queries: {
-          staleTime: 1000 * 60 * 5,
+          staleTime: 1000 * 60 * 5, // 5 minutes
           experimental_prefetchInRender: true,
         },
       },
@@ -32,7 +32,7 @@ export default defineNuxtPlugin({
     }
 
     if (import.meta.client) {
-      nuxt.hooks.hook("app:created", () => {
+      nuxt.hooks.hook("app:mounted", () => {
         hydrate(queryClient, vueQueryState.value);
       });
     }

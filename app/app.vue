@@ -1,13 +1,7 @@
-<script setup lang="ts">
-import { useQuery } from "@tanstack/vue-query";
-
-const { data: ping } = useQuery(
-  useOrpc().hello.queryOptions({
-    input: { name: "world" },
-  })
-);
-</script>
+<script setup lang="ts"></script>
 
 <template>
-  <div>{{ ping?.message }}</div>
+  <NuxtLayout>
+    <NuxtPage />
+  </NuxtLayout>
 </template>
