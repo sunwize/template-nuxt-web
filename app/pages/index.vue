@@ -1,9 +1,7 @@
 <script lang="ts" setup>
 import { useQuery } from "@tanstack/vue-query";
 
-const { data } = useQuery(
-  useOrpc().hello.queryOptions({ input: { name: "World" } })
-);
+const { data } = useQuery(useOrpc().hello.queryOptions({ input: { name: "World" } }));
 </script>
 
 <template>

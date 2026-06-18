@@ -1,15 +1,7 @@
 import { defineConfig } from "oxlint";
 
 export default defineConfig({
-  plugins: [
-    "eslint",
-    "typescript",
-    "unicorn",
-    "oxc",
-    "import",
-    "vue",
-    "promise",
-  ],
+  plugins: ["eslint", "typescript", "unicorn", "oxc", "import", "vue", "promise"],
   categories: {
     correctness: "error",
     suspicious: "warn",

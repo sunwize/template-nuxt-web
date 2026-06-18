@@ -1,7 +1,7 @@
 {
   "name": "template-nuxt-web",
-  "type": "module",
   "private": true,
+  "type": "module",
   "scripts": {
     "build": "nuxt build",
     "dev": "nuxt dev",
@@ -11,7 +11,8 @@
     "prepare": "effect-language-service patch",
     "typecheck": "tsc --build --noEmit",
     "lint": "oxlint",
-    "lint:fix": "oxlint --fix"
+    "lint:fix": "oxlint --fix",
+    "format": "oxfmt"
   },
   "dependencies": {
     "@effect/platform": "^0.96.1",
@@ -29,6 +30,7 @@
   },
   "devDependencies": {
     "@effect/language-service": "^0.86.1",
+    "oxfmt": "^0.54.0",
     "oxlint": "^1.66.0",
     "typescript": "^6.0.3"
   }

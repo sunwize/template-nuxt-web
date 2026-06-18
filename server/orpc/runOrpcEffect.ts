@@ -1,14 +1,11 @@
-import { Cause, Effect, Exit } from "effect";
 import type { ProcedureHandler } from "@orpc/server";
+import { Cause, Effect, Exit } from "effect";
 
-import { type AppRuntimeContext, appRuntime } from "../runtime";
+import { appRuntime, type AppRuntimeContext } from "../runtime";
 import { OrpcContextLive, OrpcContextService, type OrpcContext } from "./context";
 import { toOrpcError } from "./errors";
 
-export type RunOrpcHandlerOptions<
-  TContext extends OrpcContext,
-  TInput,
-> = {
+export type RunOrpcHandlerOptions<TContext extends OrpcContext, TInput> = {
   context: TContext;
   input: TInput;
   path: readonly string[];
@@ -20,12 +17,7 @@ export type RunOrpcEffectOptions = {
 
 type RunOrpcEffectServices = AppRuntimeContext | OrpcContextService;
 
-export const runOrpcEffect = <
-  TContext extends OrpcContext,
-  TInput,
-  A,
-  E,
->(
+export const runOrpcEffect = <TContext extends OrpcContext, TInput, A, E>(
   fn: (
     opts: RunOrpcHandlerOptions<TContext, TInput>,
   ) => Effect.Effect<A, E, RunOrpcEffectServices>,
